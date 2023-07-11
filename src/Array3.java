@@ -108,13 +108,13 @@ public class Array3 {
     public static int maxMirror(int[] nums) {
         int n = nums.length;
         int m = 0;
-        int c;
 
         for (int i = 0; i < n; i++) {
-            c = 0;
+            int c = 0;
 
             for (int j = n - 1; i + c < n && j > -1; j--) {
                 if (nums[i + c] == nums[j]) c++;
+
                 else if (c > 0) {
                     m = Math.max(c, m);
                     c = 0;
