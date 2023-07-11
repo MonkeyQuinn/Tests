@@ -1,6 +1,3 @@
-import java.util.ArrayList;
-import java.util.Arrays;
-
 public class String2 {
     public static String doubleChar(String str) {
         String s = "";
@@ -193,13 +190,15 @@ public class String2 {
     }
 
     public static String wordEnds(String str, String word) {
-        String res = "";
-        for (int i = 0; i < str.length(); i++) {
-            if (str.substring(i).startsWith(word)) {
-                if (i > 0) res += str.charAt(i - 1);
-                if (i < str.length() - 2) res += str.charAt(i + word.length());
-            }
+        int strLen = str.length();
+        int wordLen = word.length();
+        String s = "";
+
+        for (int i = 0; i < strLen - wordLen + 1; i++) {
+            String tmp = str.substring(i, i + wordLen);
+            if (i > 0 && tmp.equals(word)) s += str.substring(i - 1, i);
+            if (i < strLen - wordLen && tmp.equals(word)) s += str.substring(i + wordLen, i + wordLen + 1);
         }
-        return res;
+        return s;
     }
 }

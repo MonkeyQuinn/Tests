@@ -112,7 +112,8 @@ public class Array2 {
             }
         }
 
-        return arr1.stream().filter(x -> x == val).toArray().length == arr1.size() || arr2.stream().filter(x -> x == val).toArray().length == arr2.size();
+        return arr1.stream().filter(x -> x == val).toArray().length == arr1.size()
+                || arr2.stream().filter(x -> x == val).toArray().length == arr2.size();
     }
 
     public static boolean either24(int[] nums) {
@@ -167,6 +168,157 @@ public class Array2 {
     }
 
     public static boolean modThree(int[] nums) {
+        nums = Arrays.stream(nums).map(x -> x % 2).toArray();
+        for (int i = 1; i < nums.length - 1; i++) {
+            if (nums[i - 1] == 0 && nums[i] == 0 && nums[i + 1] == 0) {
+                return true;
+
+            } else if (nums[i - 1] != 0 && nums[i] != 0 && nums[i + 1] != 0) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public static boolean haveThree(int[] nums) {
+        if (Arrays.stream(nums).filter(x -> x == 3).count() == 3) {
+            for (int i = 1; i < nums.length - 1; i++) {
+                if (nums[i - 1] != 3 && nums[i] == 3 && nums[i + 1] != 3) return true;
+            }
+        }
+
+        return false;
+    }
+
+    public static boolean twoTwo(int[] nums) {
+        for (int i = 0; i < (nums.length); i++) {
+            if (nums[i] == 2) {
+                i++;
+                if (!(i < (nums.length)) || nums[i] != 2) return false;
+                while (i < nums.length && nums[i] == 2) i++;
+            }
+        }
         return true;
+    }
+
+    public static boolean sameEnds(int[] nums, int len) {
+        int[] arr1 = Arrays.stream(nums).limit(len).toArray();
+        int[] arr2 = Arrays.stream(nums).skip(nums.length - len).toArray();
+        return Arrays.equals(arr1, arr2);
+    }
+
+    public static boolean tripleUp(int[] nums) {
+        if (nums.length >= 3) {
+            for (int i = 0; i < nums.length - 2; i++) {
+                int x = nums[i];
+                int y = nums[i + 1];
+                int z = nums[i + 2];
+
+                if (z - y == 1 && y - x == 1) {
+                    return true;
+                }
+            }
+        }
+
+        return false;
+    }
+
+    public static int[] fizzArray3(int start, int end) {
+        return IntStream.range(start, end).toArray();
+    }
+
+    public static int[] shiftLeft(int[] nums) {
+        return nums.length > 0 ? IntStream
+                .concat(
+                        Arrays.stream(nums).skip(1),
+                        IntStream.of(nums[0])
+                ).toArray() : nums;
+    }
+
+    public static int[] tenRun(int[] nums) {
+        int x = -1;
+        for (int i = 0; i < nums.length; i++) {
+            if (nums[i] % 10 == 0) x = nums[i];
+            else if (x >= 0) nums[i] = x;
+        }
+
+        return nums;
+    }
+
+    public static int[] pre4(int[] nums) {
+        for (int i = 0; i < nums.length; i++) {
+            if (nums[i] == 4) return Arrays.stream(nums).limit(i).toArray();
+        }
+        return nums;
+    }
+
+    public static int[] post4(int[] nums) {
+        for (int i = nums.length - 1; i >= 0; i--) {
+            if (nums[i] == 4) return Arrays.stream(nums).skip(i + 1).toArray();
+        }
+        return nums;
+    }
+
+    public static int[] notAlone(int[] nums, int val) {
+        if (nums.length >= 3) {
+            for (int i = 1; i < nums.length - 1; i++) {
+                int x = Math.max(nums[i - 1], nums[i + 1]);
+                if (nums[i] == val && nums[i] != nums[i - 1] && nums[i] != nums[i + 1] && x > val) {
+                    nums[i] = x;
+                }
+            }
+        }
+
+        return nums;
+    }
+
+    public static int[] zeroFront(int[] nums) {
+        int[] arr = new int[nums.length];
+        int i = (int) Arrays.stream(nums).filter(x -> x == 0).count();
+        nums = Arrays.stream(nums).filter(x -> x != 0).toArray();
+
+        for (int j = 0; j < nums.length; i++, j++) {
+            arr[i] = nums[j];
+        }
+        return arr;
+    }
+
+    public static int[] withoutTen(int[] nums) {
+        int[] arr = new int[nums.length];
+        nums = Arrays.stream(nums).filter(x -> x != 10).toArray();
+        System.arraycopy(nums, 0, arr, 0, nums.length);
+        return arr;
+    }
+
+    public static int[] zeroMax(int[] nums) {
+        for (int i = 0; i < nums.length; i++) {
+            if (nums[i] == 0) {
+                int x = 0;
+                for (int j = i + 1; j < nums.length; j++) {
+                    if (nums[j] % 2 != 0) x = Math.max(x, nums[j]);
+                }
+                nums[i] = x;
+            }
+        }
+
+        return nums;
+    }
+
+    public static int[] evenOdd(int[] nums) {
+        IntStream intStream1 = Arrays.stream(nums).filter(x -> x % 2 == 0);
+        IntStream intStream2 = Arrays.stream(nums).filter(x -> x % 2 != 0);
+        return IntStream.concat(intStream1, intStream2).toArray();
+    }
+
+    public static String[] fizzBuzz(int start, int end) {
+        String[] arr = new String[end - start];
+        int j = 0;
+        for (int i = start; i < end; i++, j++) arr[j] = String.valueOf(i);
+        return java.util.Arrays.stream(arr)
+                .map(x -> Integer.parseInt(x) % 3 == 0 && Integer.parseInt(x) % 5 == 0 ? "FizzBuzz"
+                        : Integer.parseInt(x) % 3 == 0 ? "Fizz"
+                        : Integer.parseInt(x) % 5 == 0 ? "Buzz"
+                        : x
+                ).toList().toArray(new String[arr.length]);
     }
 }
