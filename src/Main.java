@@ -1,9 +1,14 @@
+import java.util.HashMap;
+import java.util.Map;
+
 public class Main {
     public static void main(String[] args) {
-        System.out.println(String3
-                .notReplace("This is good")
+        Map<String, String> map = new HashMap<>();
+        map.put("a", "candy");
+        map.put("b", "dirt");
+
+        System.out.println(Map1.
+                topping1(map)
         );
     }
-
-
 }
