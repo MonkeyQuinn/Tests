@@ -1,14 +1,9 @@
-import java.util.HashMap;
-import java.util.Map;
+import java.util.Arrays;
 
 public class Main {
     public static void main(String[] args) {
-        Map<String, String> map = new HashMap<>();
-        map.put("a", "candy");
-        map.put("b", "dirt");
-
-        System.out.println(Map1.
-                topping1(map)
+        System.out.println(Arrays.toString(Map2
+                .firstSwap(new String[]{"ax", "bx", "cx", "dx", "cy", "by", "ay", "aaa", "azz", ""}))
         );
     }
 }
