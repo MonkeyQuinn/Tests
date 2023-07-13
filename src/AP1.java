@@ -2,6 +2,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
+import java.util.stream.Collectors;
 
 public class AP1 {
     public static boolean scoresIncreasing(int[] scores) {
@@ -112,21 +113,9 @@ public class AP1 {
     }
 
     public static String[] wordsWithout(String[] words, String target) {
-        int n = (int) Arrays.stream(words).filter(x -> !Objects.equals(x, target)).count();
-        String[] arr = new String[n];
-
-        int j = 0;
-        for (String w : words) {
-            if (!Objects.equals(w, target)) {
-                arr[j] = w;
-                j++;
-            }
-        }
-
-        return arr;
-
-        //Более простое решение, но его не принимает CodingBat из-за метода toList()
-        //return Arrays.stream(words).filter(x -> !Objects.equals(x, target)).toList().toArray(new String[0]);
+        return Arrays.stream(words).filter(x -> !Objects.equals(x, target)).collect(Collectors.toList()).toArray(new String[0]);
+        //Здесь было использовано collect для преобразования в список вместо просто toList, так как
+        //CodingBat ругается на него
     }
 
     public static int scoresSpecial(int[] a, int[] b) {
