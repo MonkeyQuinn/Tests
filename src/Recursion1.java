@@ -238,10 +238,8 @@ public class Recursion1 {
             if (str.endsWith(sub))
                 return str.length();
 
-            else
-                return strDist(str.substring(0, str.length() - 1), sub);
-
-        } else
-            return strDist(str.substring(1), sub);
+            return strDist(str.substring(0, str.length() - 1), sub);
+        }
+        return strDist(str.substring(1), sub);
     }
 }
