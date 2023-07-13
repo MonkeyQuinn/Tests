@@ -126,7 +126,7 @@ public class AP1 {
         return arr;
 
         //Более простое решение, но его не принимает CodingBat из-за метода toList()
-        // return Arrays.stream(words).filter(x -> !Objects.equals(x, target)).toList().toArray(new String[0]);
+        //return Arrays.stream(words).filter(x -> !Objects.equals(x, target)).toList().toArray(new String[0]);
     }
 
     public static int scoresSpecial(int[] a, int[] b) {

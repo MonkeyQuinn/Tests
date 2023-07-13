@@ -45,9 +45,7 @@ public class String2 {
     public static boolean endOther(String a, String b) {
         a = a.toLowerCase();
         b = b.toLowerCase();
-
-        if (a.length() >= b.length()) return a.indexOf(b) == a.length() - b.length();
-        return b.indexOf(a) == b.length() - a.length();
+        return a.endsWith(b) || b.endsWith(a);
     }
 
     public static boolean xyzThere(String str) {
